@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geschwindigkeitsmesser</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Geschwindigkeit & Navigation</h1>
+
+    <div class="container">
+        <!-- LINKE SPALTE -->
+        <div class="left-column">
+            <div class="speed-display">
+                <p><strong>Aktueller Kurs (°):</strong></p>
+                <p><strong><span id="heading">–</span></strong></p>
+                <p><strong>km/h:</strong> <span id="speedKmh">0</span></p>
+                <p><strong>Knoten:</strong> <span id="speedKnots">0</span></p>
+            </div>
+
+            <div class="geo-display">
+                <p><strong>Breitengrad:</strong> <span id="latitude">–</span></p>
+                <p><strong>Längengrad:</strong> <span id="longitude">–</span></p>
+                <button id="copyCoords">Koordinaten kopieren</button>
+                <p id="copyStatus" style="font-size: 0.9em; color: green;"></p>
+
+                <button id="mobButton">MOB setzen</button>
+                <div class="mob-display">
+                    <p><strong>MOB-Breitengrad:</strong> <span id="mobLat">–</span></p>
+                    <p><strong>MOB-Längengrad:</strong> <span id="mobLon">–</span></p>
+                </div>
+            </div>
+
+            <div class="waypoint-display">
+                <h2>Wegpunkte (alle 30 Sekunden)</h2>
+                <ul id="waypointList"></ul>
+            </div>
+        </div>
+
+        <!-- RECHTE SPALTE -->
+        <div class="right-column">
+            <h2>⚓️ Anker</h2>
+            <button id="setAnchor">Anker setzen</button>
+            <div class="anchor-display">
+                <p><strong>Anker-Breitengrad:</strong> <span id="anchorLat">–</span></p>
+                <p><strong>Anker-Längengrad:</strong> <span id="anchorLon">–</span></p>
+                <p id="anchorStatus" class="anchor-safe">Status: Anker sitzt</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
