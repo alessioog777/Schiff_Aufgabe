@@ -81,7 +81,7 @@ document.getElementById("mobButton").addEventListener("click", () => {
                 iconSize: [25, 41],
                 iconAnchor: [12, 41],
             }),
-        }).addTo(map).bindPopup("📍 MOB");
+        }).addTo(map).bindPopup("❌ MOB");
     }
 });
 
