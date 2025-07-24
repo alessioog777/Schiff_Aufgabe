@@ -10,6 +10,17 @@ let anchorLat = null;
 let anchorLon = null;
 const ANCHOR_RADIUS = 30; // Meter
 
+let map;
+let userMarker;
+
+// Initialisiere Karte
+window.onload = () => {
+    map = L.map('map').setView([47, 8], 13); // Default-Koordinaten Schweiz
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap-Mitwirkende'
+    }).addTo(map);
+};
+
 function handleError(error) {
     console.error('GPS Fehler:', error);
 }
@@ -58,6 +69,18 @@ function updateSpeed(position) {
 
     document.getElementById('latitude').textContent = lat.toFixed(6);
     document.getElementById('longitude').textContent = lon.toFixed(6);
+
+    // Karte aktualisieren
+    if (map) {
+        const latLng = [lat, lon];
+        map.setView(latLng, 16);
+
+        if (!userMarker) {
+            userMarker = L.marker(latLng).addTo(map);
+        } else {
+            userMarker.setLatLng(latLng);
+        }
+    }
 }
 
 function getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
@@ -71,21 +94,6 @@ function getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
 }
-
-document.getElementById('copyCoords').addEventListener('click', () => {
-    const lat = document.getElementById('latitude').textContent;
-    const lon = document.getElementById('longitude').textContent;
-    const coords = `https://maps.google.com/?q=${lat},${lon}`;
-
-    navigator.clipboard.writeText(coords).then(() => {
-        document.getElementById('copyStatus').textContent = 'Koordinaten kopiert!';
-        setTimeout(() => {
-            document.getElementById('copyStatus').textContent = '';
-        }, 2000);
-    }).catch(err => {
-        document.getElementById('copyStatus').textContent = 'Fehler beim Kopieren.';
-    });
-});
 
 document.getElementById('mobButton').addEventListener('click', () => {
     const lat = document.getElementById('latitude').textContent;
@@ -112,7 +120,8 @@ setInterval(() => {
     link.textContent = `${timestamp} → ${lat}, ${lon}`;
     listItem.appendChild(link);
 
-    document.getElementById('waypointList').appendChild(listItem);
+    const list = document.getElementById('waypointList');
+    list.insertBefore(listItem, list.firstChild); // Neuester oben
 }, 30000);
 
 // Anker setzen
