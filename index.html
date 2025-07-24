@@ -6,9 +6,11 @@
     <title>Geschwindigkeitsmesser</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-oH+m3D9SHTA3gLMefr2zWxDx1Ds8R6BuG2jG3yZ9g54=" crossorigin=""/>
 </head>
 <body>
-    <h1>Geschwindigkeit & Navigation</h1>
+    <h1>Geschwindigkeit und Navigation</h1>
 
     <div class="container">
         <!-- LINKE SPALTE -->
@@ -23,8 +25,6 @@
             <div class="geo-display">
                 <p><strong>Breitengrad:</strong> <span id="latitude">–</span></p>
                 <p><strong>Längengrad:</strong> <span id="longitude">–</span></p>
-                <button id="copyCoords">Koordinaten kopieren</button>
-                <p id="copyStatus" style="font-size: 0.9em; color: green;"></p>
 
                 <button id="mobButton">MOB setzen</button>
                 <div class="mob-display">
@@ -51,6 +51,10 @@
         </div>
     </div>
 
+    <div id="map" style="height: 400px; margin-top: 2em; border-radius: 10px;"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-oH+m3D9SHTA3gLMefr2zWxDx1Ds8R6BuG2jG3yZ9g54=" crossorigin=""></script>
     <script src="app.js"></script>
 </body>
 </html>
