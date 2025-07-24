@@ -24,7 +24,7 @@ function initMap(lat, lon) {
         attribution: "© OpenStreetMap",
     }).addTo(map);
 
-    userMarker = L.marker([lat, lon]).addTo(map).bindPopup("Du bist hier").openPopup();
+    userMarker = L.marker([lat, lon]).addTo(map).bindPopup("Du").openPopup();
 }
 
 function updateUserPosition(lat, lon) {
